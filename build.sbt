@@ -10,4 +10,4 @@ run / fork := true
 libraryDependencies += "org.scala-lang" % "scala-compiler" % scalaVersion.value
 
 Compile / unmanagedClasspath ++= (Compile / unmanagedResources).value
-libraryDependencies += "com.typesafe.slick" %% "slick" % "3.4.0-RC2"
+libraryDependencies += "com.typesafe.slick" %% "slick" % "3.4.0-RC3"
