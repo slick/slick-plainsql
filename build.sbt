@@ -23,3 +23,5 @@ libraryDependencies += "com.typesafe.slick" %% "slick" % "3.4.1"
 githubWorkflowJavaVersions := JavaSpec.temurin("8") +: githubWorkflowJavaVersions.value
 
 ThisBuild / githubWorkflowBuild := Seq(WorkflowStep.Sbt(List("runAll"), name = Some(s"Run all main classes")))
+
+ThisBuild / githubWorkflowPublishTargetBranches := Seq()
