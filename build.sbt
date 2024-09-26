@@ -1,4 +1,4 @@
-import _root_.io.github.nafg.mergify.dsl._
+import _root_.io.github.nafg.mergify.dsl.*
 
 
 mergifyExtraConditions := Seq(
@@ -20,7 +20,7 @@ libraryDependencies += "org.scala-lang" % "scala-compiler" % scalaVersion.value
 Compile / unmanagedClasspath ++= (Compile / unmanagedResources).value
 libraryDependencies += "com.typesafe.slick" %% "slick" % "3.5.1"
 
-githubWorkflowJavaVersions := JavaSpec.temurin("8") +: githubWorkflowJavaVersions.value
+ThisBuild / githubWorkflowJavaVersions := Seq(JavaSpec.temurin("11"))
 
 ThisBuild / githubWorkflowBuild := Seq(WorkflowStep.Sbt(List("runAll"), name = Some(s"Run all main classes")))
 
