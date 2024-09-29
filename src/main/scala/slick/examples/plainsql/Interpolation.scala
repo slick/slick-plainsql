@@ -1,17 +1,11 @@
-import slick.jdbc.H2Profile.api._
+package slick.examples.plainsql
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
-trait Interpolation { this: PlainSQL.type =>
+import slick.jdbc.H2Profile.api.*
 
-  def createCoffees: DBIO[Int] =
-    sqlu"""create table coffees(
-      name varchar not null,
-      sup_id int not null,
-      price double not null,
-      sales int not null,
-      total int not null,
-      foreign key(sup_id) references suppliers(id))"""
+//noinspection MutatorLikeMethodIsParameterless
+trait Interpolation { this: PlainSQL.type =>
 
   def createSuppliers: DBIO[Int] =
     sqlu"""create table suppliers(
@@ -21,6 +15,15 @@ trait Interpolation { this: PlainSQL.type =>
       city varchar not null,
       state varchar not null,
       zip varchar not null)"""
+
+  def createCoffees: DBIO[Int] =
+    sqlu"""create table coffees(
+      name varchar not null,
+      sup_id int not null,
+      price double not null,
+      sales int not null,
+      total int not null,
+      foreign key(sup_id) references suppliers(id))"""
 
   def insertSuppliers: DBIO[Unit] = DBIO.seq(
     // Insert some suppliers
@@ -51,16 +54,20 @@ trait Interpolation { this: PlainSQL.type =>
     // Iterate through all coffees and output them
     sql"select * from coffees".as[Coffee].map { cs =>
       println("Coffees:")
-      for(c <- cs)
-        println("* " + c.name + "\t" + c.supID + "\t" + c.price + "\t" + c.sales + "\t" + c.total)
+      for (c <- cs)
+        println(
+          "* " + c.name + "\t" + c.supID + "\t" + c.price + "\t" + c.sales + "\t" + c.total
+        )
     }
 
-  def namesByPrice(price: Double): DBIO[Seq[(String, String)]] = sql"""
+  // noinspection SameParameterValue
+  private def namesByPrice(price: Double): DBIO[Seq[(String, String)]] = sql"""
     select c.name, s.name
     from coffees c, suppliers s
     where c.price < $price and s.id = c.sup_id""".as[(String, String)]
 
-  def supplierById(id: Int): DBIO[Seq[Supplier]] =
+  // noinspection SameParameterValue
+  private def supplierById(id: Int): DBIO[Seq[Supplier]] =
     sql"select * from suppliers where id = $id".as[Supplier]
 
   def printParameterized: DBIO[Unit] = {

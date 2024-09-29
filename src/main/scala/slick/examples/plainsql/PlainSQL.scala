@@ -1,15 +1,19 @@
-import scala.concurrent.{Future, Await}
+package slick.examples.plainsql
+
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration.Duration
-import slick.jdbc.H2Profile.api._
+import scala.concurrent.{Await, Future}
 
-/** A simple example that uses plain SQL queries against an in-memory
-  * H2 database. The example data comes from Oracle's JDBC tutorial at
-  * http://download.oracle.com/javase/tutorial/jdbc/basics/tables.html. */
+import slick.jdbc.H2Profile.api.*
+
+/** A simple example that uses plain SQL queries against an in-memory H2
+  * database. The example data comes from Oracle's JDBC tutorial at
+  * http://download.oracle.com/javase/tutorial/jdbc/basics/tables.html.
+  */
 object PlainSQL extends App with Interpolation with Transfer {
   val db = Database.forConfig("h2mem1")
   try {
-    val f: Future[_] = {
+    val f: Future[?] = {
 
       val a: DBIO[Unit] = DBIO.seq(
         createSuppliers,
