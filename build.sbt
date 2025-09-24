@@ -14,7 +14,7 @@ mergifyExtraConditions := Seq(
 )
 libraryDependencies ++= List(
   "org.slf4j"      % "slf4j-nop" % "2.0.17",
-  "com.h2database" % "h2"        % "2.3.232"
+  "com.h2database" % "h2"        % "2.4.240"
 )
 
 scalacOptions += "-deprecation"
