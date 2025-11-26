@@ -24,7 +24,7 @@ run / fork := true
 libraryDependencies += "org.scala-lang" % "scala-compiler" % scalaVersion.value
 
 Compile / unmanagedClasspath ++= (Compile / unmanagedResources).value
-libraryDependencies += "com.typesafe.slick" %% "slick" % "3.6.0"
+libraryDependencies += "com.typesafe.slick" %% "slick" % "3.6.1"
 
 ThisBuild / githubWorkflowJavaVersions          := Seq(JavaSpec.temurin("11"))
 ThisBuild / githubWorkflowPublishTargetBranches := Seq()
