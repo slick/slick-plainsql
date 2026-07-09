@@ -10,31 +10,33 @@ import slick.jdbc.H2Profile.api.*
   * database. The example data comes from Oracle's JDBC tutorial at
   * http://download.oracle.com/javase/tutorial/jdbc/basics/tables.html.
   */
-object PlainSQL extends App with Interpolation with Transfer {
-  val db = Database.forConfig("h2mem1")
-  try {
-    val f: Future[?] = {
+object PlainSQL extends Interpolation with Transfer {
+  def main(args: Array[String]): Unit = {
+    val db = Database.forConfig("h2mem1")
+    try {
+      val f: Future[?] = {
 
-      val a: DBIO[Unit] = DBIO.seq(
-        createSuppliers,
-        createCoffees,
-        insertSuppliers,
-        insertCoffees,
-        printAll,
-        printParameterized,
-        coffeeByName("Colombian").map { s =>
-          println(s"Coffee Colombian: $s")
-        },
-        deleteCoffee("Colombian").map { rows =>
-          println(s"Deleted $rows rows")
-        },
-        coffeeByName("Colombian").map { s =>
-          println(s"Coffee Colombian: $s")
-        }
-      )
-      db.run(a)
+        val a: DBIO[Unit] = DBIO.seq(
+          createSuppliers,
+          createCoffees,
+          insertSuppliers,
+          insertCoffees,
+          printAll,
+          printParameterized,
+          coffeeByName("Colombian").map { s =>
+            println(s"Coffee Colombian: $s")
+          },
+          deleteCoffee("Colombian").map { rows =>
+            println(s"Deleted $rows rows")
+          },
+          coffeeByName("Colombian").map { s =>
+            println(s"Coffee Colombian: $s")
+          }
+        )
+        db.run(a)
 
-    }
-    Await.result(f, Duration.Inf)
-  } finally db.close
+      }
+      Await.result(f, Duration.Inf)
+    } finally db.close
+  }
 }
