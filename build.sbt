@@ -2,7 +2,7 @@ import _root_.io.github.nafg.mergify.dsl.*
 
 inThisBuild(
   List(
-    scalaVersion := "2.13.18",
+    scalaVersion := "3.9.0",
     scalacOptions += "-Xsource:3"
   )
 )
