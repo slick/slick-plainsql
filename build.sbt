@@ -13,7 +13,7 @@ mergifyExtraConditions := Seq(
     (Attr.Author :== "renovate[bot]")
 )
 libraryDependencies ++= List(
-  "org.slf4j"      % "slf4j-nop" % "2.0.19",
+  "org.slf4j"      % "slf4j-nop" % "2.0.20",
   "com.h2database" % "h2"        % "2.5.250"
 )
 
