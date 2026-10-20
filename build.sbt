@@ -1,11 +1,6 @@
 import _root_.io.github.nafg.mergify.dsl.*
 
-inThisBuild(
-  List(
-    scalaVersion := "3.10.0",
-    scalacOptions += "-Xsource:3"
-  )
-)
+ThisBuild / scalaVersion := "3.10.0"
 
 mergifyExtraConditions := Seq(
   (Attr.Author :== "scala-steward") ||
@@ -20,8 +15,6 @@ libraryDependencies ++= List(
 scalacOptions += "-deprecation"
 
 run / fork := true
-
-libraryDependencies += "org.scala-lang" % "scala-compiler" % scalaVersion.value
 
 libraryDependencies += "com.typesafe.slick" %% "slick" % "3.6.1"
 
