@@ -22,7 +22,7 @@ trait Transfer { this: PlainSQL.type =>
   )
 
   // Result set getters
-  implicit val getSupplierResult: GetResult[Supplier] = GetResult(r =>
+  given GetResult[Supplier] = r =>
     Supplier(
       r.nextInt(),
       r.nextString(),
@@ -31,7 +31,5 @@ trait Transfer { this: PlainSQL.type =>
       r.nextString(),
       r.nextString()
     )
-  )
-  implicit val getCoffeeResult: GetResult[Coffee]     =
-    GetResult(r => Coffee(r.<<, r.<<, r.<<, r.<<, r.<<))
+  given GetResult[Coffee]   = r => Coffee(r.<<, r.<<, r.<<, r.<<, r.<<)
 }
