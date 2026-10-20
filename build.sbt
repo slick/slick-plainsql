@@ -16,7 +16,7 @@ scalacOptions += "-deprecation"
 
 run / fork := true
 
-libraryDependencies += "com.typesafe.slick" %% "slick" % "3.6.1"
+libraryDependencies += "com.typesafe.slick" %% "slick" % "4.0.0-RC2"
 
 ThisBuild / githubWorkflowJavaVersions          := Seq(JavaSpec.temurin("17"))
 ThisBuild / githubWorkflowPublishTargetBranches := Seq()

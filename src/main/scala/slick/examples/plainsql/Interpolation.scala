@@ -1,7 +1,5 @@
 package slick.examples.plainsql
 
-import scala.concurrent.ExecutionContext.Implicits.global
-
 import slick.jdbc.H2Profile.api.*
 
 //noinspection MutatorLikeMethodIsParameterless
@@ -32,7 +30,7 @@ trait Interpolation { this: PlainSQL.type =>
     sqlu"insert into suppliers values(150, 'The High Ground', '100 Coffee Lane', 'Meadows', 'CA', '93966')"
   )
 
-  def insertCoffees: DBIO[Unit] = {
+  def insertCoffees: DBIO[Int] = {
     def insert(c: Coffee): DBIO[Int] =
       sqlu"insert into coffees values (${c.name}, ${c.supID}, ${c.price}, ${c.sales}, ${c.total})"
 
